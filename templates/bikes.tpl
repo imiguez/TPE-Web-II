@@ -1,11 +1,12 @@
 {include file="head.tpl"}
 
-{include file="nav.tpl" url=""}
+{include file="nav.tpl"}
 
 <table class="table table-bordered container" style="background-color: white; text-align: center; margin: 5% auto; min-height: 75vh">
     <thead style="background-color: #343a40; color: white">
         <tr>
         <th scope="col" style="border-color: #343a40">Marca</th>
+        <th scope="col" style="border-color: #343a40">Modelo</th>
         <th scope="col" style="border-color: #343a40">Categoría</th>
         <!--<th scope="col">Condicion</th>
         <th scope="col">Precio</th>-->
@@ -17,6 +18,7 @@
     {foreach from=$bikes item=bike} 
         <tr>
             <td>{$bike->marca}</td>
+            <td>{$bike->modelo}</td>
             <td>
                 {foreach from=$categories item=categorie}
                     {if $bike->id_categoria == $categorie->id_categoria}
@@ -31,7 +33,7 @@
             {/if}
             </td>
             <td>{$bike->precio}</td>-->
-            <td><a href="bicicleta/{$bike->id_bicicleta}" class="list-group-item list-group-item-action">Ver Detalles</a></td>
+            <td><a href="bike/{$bike->id_bicicleta}" class="list-group-item list-group-item-action" style="border: none">Ver Detalles</a></td>
         </tr>
     {/foreach}
 

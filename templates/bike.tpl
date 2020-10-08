@@ -1,6 +1,6 @@
 {include file="head.tpl"}
 
-{include file="nav.tpl" url="../"}
+{include file="nav.tpl"}
 
 <table class="table table-bordered container" style="background-color: white; text-align: center; margin: 5% auto; min-height: 75vh">
     <thead style="background-color: #343a40; color: white">
@@ -19,7 +19,7 @@
             <td style="align-self: center;">
                 {foreach from=$categories item=categorie}
                     {if $bike->id_categoria == $categorie->id_categoria}
-                        {$categorie->categoria}
+                        <a href="categorie/{$categorie->id_categoria}" class="list-group-item list-group-item-action" style="border: none">{$categorie->categoria}</a>
                     {/if}
                 {/foreach}
             </td>

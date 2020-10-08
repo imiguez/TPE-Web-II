@@ -1,6 +1,7 @@
 <?php
 
     require_once './Model/ModelBikes.php';
+    require_once './Model/ModelCategories.php';
     require_once './View/ViewBikes.php';
 
     class ControllerBikes{
@@ -9,37 +10,40 @@
 
 
         function __construct() {
-            $this->model = new ModelBikes();
+            $this->modelBikes = new ModelBikes();
+            $this->modelCategories = new ModelCategories();
             $this->view = new ViewBikes();
         }
 
+
+        private function checkUserSesion() {
+            session_start();
+            if (!isset($_SESSION['usuario'])) {
+                header("Location: ".LOGIN);
+                die();
+            }
+        }
+
         function showHome() {
-            $this->view->showHome();
+            session_start();
+            $this->view->showHome(isset($_SESSION['usuario']));
         }
 
         function showBikes() {
-            $bikes = $this->model->getBikes();
-            $categories = $this->model->getCategories();
+            //$this->checkUserSesion();
+            $bikes = $this->modelBikes->getBikes();
+            $categories = $this->modelCategories->getCategories();
             $this->view->bikes($bikes, $categories);
         }
 
         function showBike($params = null){
+            $this->checkUserSesion();
             $id_bicicleta = $params[':ID'];
-            $bicicleta = $this->model->getBike($id_bicicleta);
-            $categories = $this->model->getCategories();
-            $this->view->bike($bicicleta, $categories);
-        }
-
-        function showCategories() {
-            $categories = $this->model->getCategories();
-            $bikes = $this->model->getBikes();
-            $this->view->categories($categories, $bikes);
+            $bike = $this->modelBikes->getBike($id_bicicleta);
+            $categories = $this->modelCategories->getCategories();
+            $this->view->bike($bike, $categories);
         }
 
     }
-
-
-
-
 
 ?>

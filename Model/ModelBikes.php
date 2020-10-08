@@ -8,6 +8,7 @@
             $this->db = new PDO('mysql:host=localhost;'.'dbname=bicicleteria;charset=utf8', 'root', '');
         }
 
+
         function getBike($id_bike) {
             $sentencia = $this->db->prepare("SELECT * FROM bicicleta WHERE id_bicicleta=?");
             $sentencia->execute(array($id_bike));
@@ -20,11 +21,6 @@
             return $sentencia->fetchAll(PDO::FETCH_OBJ);
         }
 
-        function getCategories() {
-            $sentencia = $this->db->prepare("SELECT * FROM categoria");
-            $sentencia->execute();
-            return $sentencia->fetchAll(PDO::FETCH_OBJ);
-        }
 
         function insertBike($marca, $model, $id_categorie, $condition, $price) {
             $sentencia = $this->db->prepare("INSERT INTO bicicleta(marca, modelo, id_categoria, condicion, precio) VALUE(?, ?, ?, ?, ?)");
@@ -35,6 +31,7 @@
             $sentencia= $this->db->prepare("DELETE FROM bicicleta WHERE id_bicicleta=?");
             $sentencia->execute(array($id_bike));
         }
+
 
     }
 ?>

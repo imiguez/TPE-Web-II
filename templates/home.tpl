@@ -1,6 +1,6 @@
 {include file="head.tpl"}
 
-{include file="nav.tpl" url=""}
+{include file="nav.tpl"}
 
 
 <article class="container" id="article" style="margin: 5% auto; min-height: 75vh">
@@ -31,7 +31,7 @@
   <div class="col-md-6 position-static p-4 pl-md-0">
     <h5 class="mt-0">Todas las categorías con sus bicicletas</h5>
     <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-    <a href="#" class="btn btn-primary stretched-link">Ver Bicicletas</a>
+    <a href="categoriesAndBikes" class="btn btn-primary stretched-link">Ver Bicicletas</a>
   </div>
 </div>
 </article>

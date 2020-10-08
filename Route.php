@@ -1,18 +1,34 @@
 <?php
     require_once 'Controller/ControllerBikes.php';
+    require_once 'Controller/ControllerUser.php';
+    require_once 'Controller/ControllerCategories.php';
     //require_once 'Controller/TasksAdvanceController.php';
     require_once 'RouterClass.php';
     
     // CONSTANTES PARA RUTEO
     define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
+    define("LOGIN", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/login');
 
     $r = new Router();
 
     // rutas
+    // HOME
     $r->addRoute("home", "GET", "ControllerBikes", "showHome");
+    // BIKES
     $r->addRoute("bikes", "GET", "ControllerBikes", "showBikes");
-    $r->addRoute("categories", "GET", "ControllerBikes", "showCategories");
-    $r->addRoute("bicicleta/:ID", "GET", "ControllerBikes", "showBike");
+    // CATEGORIES
+    $r->addRoute("categories", "GET", "ControllerCategories", "showCategories");
+    // CATEGORIES AND BIKES
+    $r->addRoute("categoriesAndBikes", "GET", "ControllerCategories", "showCategoriesAndBikes");
+    // BIKE
+    $r->addRoute("bike/:ID", "GET", "ControllerBikes", "showBike");
+    // CATEGORIE
+    $r->addRoute("categorie/:ID", "GET", "ControllerCategories", "showCategorie");
+    // LOGIN
+    $r->addRoute("login", "GET", "ControllerUser", "showLogin");
+    $r->addRoute("verifyUserLogin", "POST", "ControllerUser", "verifyUserLogin");
+    $r->addRoute("register", "GET", "ControllerUser", "showRegister");
+    $r->addRoute("verifyUserRegister", "POST", "ControllerUser", "verifyUserRegister");
 
 
     //Esto lo veo en TasksView

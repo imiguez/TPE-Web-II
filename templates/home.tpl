@@ -3,7 +3,7 @@
 {include file="nav.tpl"}
 
 
-<article class="container" id="article" style="margin: 5% auto; min-height: 75vh">
+<article class="container" id="article" style="margin: 5% auto; height: auto;">
 <div class="row no-gutters bg-light position-relative container" style="background-color: transparent;">
   <div class="col-md-6 mb-md-0 p-md-4">
     <img src="img/bikes-list.jpg" class="w-100" alt=".">

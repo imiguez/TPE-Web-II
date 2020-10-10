@@ -2,7 +2,7 @@
 
 {include file="nav.tpl"}
 
-<table class="table table-bordered container" style="background-color: white; text-align: center; margin: 5% auto; min-height: 75vh">
+<table class="table table-bordered container" style="background-color: white; text-align: center;  margin: 20vh auto 35vh auto; height: auto">
     <thead style="background-color: #343a40; color: white">
         <tr>
         <th scope="col" style="border-color: #343a40">Marca</th>
@@ -20,20 +20,17 @@
             <td>{$bike->marca}</td>
             <td>{$bike->modelo}</td>
             <td>
-                {foreach from=$categories item=categorie}
-                    {if $bike->id_categoria == $categorie->id_categoria}
-                        {$categorie->categoria}
+                {foreach from=$categories item=category}
+                    {if $bike->id_categoria == $category->id_categoria}
+                        {$category->categoria}
                     {/if}
                 {/foreach}
             </td>
-            <!--<td>{if {$bike->condicion}}
-                Nueva
-                {else}
-                Usada    
+            {if $hasPermission}
+                <td><a href="bike/{$bike->id_bicicleta}" class="list-group-item list-group-item-action" style="border: none">Editar / Eliminar</a></td>    
+            {else}
+                <td><a href="bike/{$bike->id_bicicleta}" class="list-group-item list-group-item-action" style="border: none">Ver Detalles</a></td>
             {/if}
-            </td>
-            <td>{$bike->precio}</td>-->
-            <td><a href="bike/{$bike->id_bicicleta}" class="list-group-item list-group-item-action" style="border: none">Ver Detalles</a></td>
         </tr>
     {/foreach}
 

@@ -18,7 +18,7 @@
         }
 
 
-        private function checkUserSesion() {
+        private function checkUserSession() {
             session_start();
             if (!isset($_SESSION['usuario'])) {
                 header("Location: ".LOGIN);
@@ -26,12 +26,12 @@
             }
         }
 
-        function showCategorie($params = null) {
-            $this->checkUserSesion();
+        function showCategory($params = null) {
+            $this->checkUserSession();
             $id_categoria = $params[':ID'];
-            $categorie = $this->modelCategories->getCategorie($id_categoria);
+            $category = $this->modelCategories->getCategory($id_categoria);
             $bikes = $this->modelBikes->getBikes();
-            $this->view->categorie($categorie, $bikes);
+            $this->view->category($category, $bikes);
         }
 
         function showCategories() {
@@ -40,7 +40,7 @@
         }
 
         function showCategoriesAndBikes() {
-            $this->checkUserSesion();
+            $this->checkUserSession();
             $categories = $this->modelCategories->getCategories();
             $bikes = $this->modelBikes->getBikes();
             $this->view->categoriesAndBikes($categories, $bikes);

@@ -22,9 +22,9 @@
         }
 
 
-        function insertBike($marca, $model, $id_categorie, $condition, $price) {
+        function insertBike($marca, $modelo, $id_categoria, $condicion, $precio) {
             $sentencia = $this->db->prepare("INSERT INTO bicicleta(marca, modelo, id_categoria, condicion, precio) VALUE(?, ?, ?, ?, ?)");
-            $sentencia->execute(array($marca, $model, $id_categorie, $condition, $price));
+            $sentencia->execute(array($marca, $modelo, $id_categoria, $condicion, $precio));
         }
 
         function deleteBike($id_bike) {

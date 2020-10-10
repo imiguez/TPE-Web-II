@@ -1,3 +1,16 @@
 article {
-    height: 10vh;
+}
+
+/*.dropdown-item {
+    position: fixed !important;
+    position: ;
+}*/
+
+#dropdown-menu {
+    position: relative;
+    
+}
+.dropdown-item {
+    background-color: white !important;
+    color: #343a40 !important;
 }

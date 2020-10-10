@@ -1,18 +1,25 @@
 <?php
 
+require_once './Model/ModelCategories.php';
+
 require_once './Model/ModelUser.php';
 require_once './View/ViewUser.php';
+require_once './View/ViewBikes.php';
 
 
     class ControllerUser{
 
         private $model;
+        private $modelCategories;
         private $view;
+        private $viewBikes;
 
 
         function __construct() {
+            $this->modelCategories = new ModelCategories();
             $this->model = new ModelUser();
             $this->view = new ViewUser();
+            $this->viewBikes = new ViewBikes();
         }
 
         function showLogin() {
@@ -21,6 +28,13 @@ require_once './View/ViewUser.php';
 
         function showRegister() {
             $this->view->register();
+        }
+
+
+        function showLogout(){
+            session_start();
+            session_destroy();
+            header("Location: ". LOGIN);
         }
 
         function verifyUserLogin() {
@@ -39,8 +53,12 @@ require_once './View/ViewUser.php';
                         $_SESSION['usuario'] = $user;
                         $_SESSION['password'] = $password;
                         $_SESSION['email'] = $userDB->email;
-                        $_SESSION['permiso'] = $userDB->permiso;
-                        header("Location: ".BASE_URL."home");
+                        if ($userDB->permiso == 0) {
+                            $_SESSION['permiso'] = false;
+                        } else {
+                            $_SESSION['permiso'] = true;
+                        }
+                        header("Location: ".BASE_URL);
                     } else {
                         $this->view->login("La contraseña es incorrecta.");
                     }
@@ -72,6 +90,7 @@ require_once './View/ViewUser.php';
                 $this->view->login("Le falto completar algún campo.");
             }
         }
+
 
 
     }

@@ -23,13 +23,26 @@
     // BIKE
     $r->addRoute("bike/:ID", "GET", "ControllerBikes", "showBike");
     // CATEGORIE
-    $r->addRoute("categorie/:ID", "GET", "ControllerCategories", "showCategorie");
+    $r->addRoute("category/:ID", "GET", "ControllerCategories", "showCategory");
     // LOGIN
     $r->addRoute("login", "GET", "ControllerUser", "showLogin");
     $r->addRoute("verifyUserLogin", "POST", "ControllerUser", "verifyUserLogin");
+    // REGISTER
     $r->addRoute("register", "GET", "ControllerUser", "showRegister");
     $r->addRoute("verifyUserRegister", "POST", "ControllerUser", "verifyUserRegister");
+    // LOGOUT
+    $r->addRoute("logout", "GET", "ControllerUser", "showLogout");
 
+
+    //                       ADMIN
+
+    // INSERT
+    $r->addRoute("showInsertBike", "GET", "ControllerBikes", "showInsertBike");
+    $r->addRoute("insertBike", "POST", "ControllerBikes", "insertBike");
+
+    // EDIT
+
+    // DELETE
 
     //Esto lo veo en TasksView
     $r->addRoute("insert", "POST", "ControllerBikes", "InsertTask");

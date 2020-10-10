@@ -3,7 +3,7 @@
 {include file="nav.tpl"}
 
 
-<article  class="card" style="width: 30rem; background-color: #242527cc; padding: 3rem; border: 1px #343a40; margin: 5% auto; min-height: 60vh">
+<article  class="card" style="width: 30rem; background-color: #242527cc; padding: 3rem; border: 1px #343a40; margin: 5% auto; height: auto">
     <form action="verifyUserLogin" method="post">
         <div class="form-group">
         <label for="user" style="color: white">Nombre de Usuario</label>

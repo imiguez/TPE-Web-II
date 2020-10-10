@@ -11,14 +11,15 @@
         }
 
 
-        function categorie($categorie, $bikes) {
-            $categorie = $categorie[0];
-            $this->title = $categorie->categoria;
+        function category($category, $bikes) {
+            $category = $category[0];
+            $this->title = $category->categoria;
             $this->smarty->assign("title", $this->title);
             $this->smarty->assign("isLogged", isset($_SESSION['usuario']));
-            $this->smarty->assign("categorie", $categorie);
+            $this->smarty->assign("hasPermission", $_SESSION['permiso']);
+            $this->smarty->assign("category", $category);
             $this->smarty->assign("bikes", $bikes);
-            $this->smarty->display('templates/categorie.tpl');
+            $this->smarty->display('templates/category.tpl');
       
         }      
 
@@ -27,6 +28,7 @@
             $this->title = "Categorías";
             $this->smarty->assign("title", $this->title);
             $this->smarty->assign("isLogged", isset($_SESSION['usuario']));
+            $this->smarty->assign("hasPermission", $_SESSION['permiso']);
             $this->smarty->assign("categories", $categories);
             $this->smarty->display('templates/categories.tpl');
       
@@ -37,6 +39,7 @@
             $this->title = "Categorías y Bicicletas";
             $this->smarty->assign("title", $this->title);
             $this->smarty->assign("isLogged", isset($_SESSION['usuario']));
+            $this->smarty->assign("hasPermission", $_SESSION['permiso']);
             $this->smarty->assign("categories", $categories);
             $this->smarty->assign("bikes", $bikes);
             $this->smarty->display('templates/categoriesAndBikes.tpl');

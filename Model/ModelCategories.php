@@ -17,9 +17,9 @@
             return $sentencia->fetchAll(PDO::FETCH_OBJ);
         }
 
-        function getCategorie($id_categorie) {
+        function getCategory($id_category) {
             $sentencia = $this->db->prepare("SELECT * FROM categoria WHERE id_categoria=?");
-            $sentencia->execute(array($id_categorie));
+            $sentencia->execute(array($id_category));
             return $sentencia->fetchAll(PDO::FETCH_OBJ);
         }
 

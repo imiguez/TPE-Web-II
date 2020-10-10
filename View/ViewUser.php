@@ -18,6 +18,7 @@ require_once 'libs/smarty/Smarty.class.php';
         function login($msj = "") {
             $this->title = "Login";
             $this->smarty->assign("title", $this->title);
+            $this->smarty->assign("isLogged", isset($_SESSION['usuario']));
             $this->smarty->assign("msj", $msj);
             $this->smarty->display("templates/login.tpl");
         }
@@ -25,12 +26,10 @@ require_once 'libs/smarty/Smarty.class.php';
         function register($msj = "") {
             $this->title = "Registracion";
             $this->smarty->assign("title", $this->title);
+            $this->smarty->assign("isLogged", isset($_SESSION['usuario']));
             $this->smarty->assign("msj", $msj);
             $this->smarty->display("templates/register.tpl");
         }
-
-
-
 
 
 

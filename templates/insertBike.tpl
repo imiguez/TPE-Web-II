@@ -36,7 +36,7 @@
     </div>
     <div class="form-group form-check">
         <div>
-            <input type="radio" class="form-check-input" id="nueva" name="condicion" value="1">
+            <input type="radio" class="form-check-input" id="nueva" name="condicion" value="1" checked="checked">
             <label class="form-check-label" for="nueva">Es nueva</label>
         </div>
         <div>
@@ -44,11 +44,11 @@
             <label class="form-check-label" for="usada">Es usada</label>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Agregar</button>
   </form>
 
     {if $msj != ""}
-    <div class="alert alert-danger" style="margin-top: 25px" role="alert">{$msj}</div>
+    <div class="alert alert-warning" style="margin-top: 25px" role="alert">{$msj}</div>
     {/if}
 </article>
 

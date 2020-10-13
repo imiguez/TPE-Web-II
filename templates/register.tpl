@@ -23,7 +23,7 @@
     </div>-->
     <button type="submit" class="btn btn-primary" style="width: 100%; background-color: #343a40; color: white;">Registrar</button>
     {if $msj != ""}
-    <div class="alert alert-danger" style="margin-top: 25px" role="alert">{$msj}</div>
+    <div class="alert alert-warning" style="margin-top: 25px" role="alert">{$msj}</div>
     {/if}
     </form>
 </article>

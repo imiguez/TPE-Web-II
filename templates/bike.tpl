@@ -85,8 +85,12 @@
         </div>
         {/if}
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Editar</button>
   </form>
+  
+    {if $msj != ""}
+    <div class="alert alert-warning" style="margin-top: 25px" role="alert">{$msj}</div>
+    {/if}
 </article>
 {/if}
 

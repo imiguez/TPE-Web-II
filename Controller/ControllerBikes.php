@@ -3,27 +3,22 @@
     require_once './Model/ModelBikes.php';
     require_once './Model/ModelCategories.php';
     require_once './View/ViewBikes.php';
+    require_once './Controller/ControllerSessionHelper.php';
 
     class ControllerBikes{
         private $view;
         private $modelCategories;
         private $modelBikes;
+        private $sessionHelper;
 
 
         function __construct() {
             $this->modelBikes = new ModelBikes();
             $this->modelCategories = new ModelCategories();
             $this->view = new ViewBikes();
+            $this->sessionHelper = new SessionHelper();
         }
 
-
-        private function checkUserSession() {
-            session_start();
-            if (!isset($_SESSION['usuario'])) {
-                header("Location: ".LOGIN);
-                die();
-            }
-        }
 
         function showHome() {
             session_start();
@@ -38,7 +33,7 @@
         }
 
         function showBike($params = null){
-            $this->checkUserSession();
+            $this->sessionHelper->checkUserSession();
             $id_bicicleta = $params[':ID'];
             $bike = $this->modelBikes->getBike($id_bicicleta);
             $categories = $this->modelCategories->getCategories();
@@ -46,32 +41,57 @@
         }
 
         function showInsertBike() {
-            $this->checkUserSession();
+            $this->sessionHelper->checkUserSession();
             $categories = $this->modelCategories->getCategories();
             $this->view->insertBike($categories);
         }
 
-        function insertBike($params = null) {
-            $this->checkUserSession();
-            $marca = $_POST['marca'];
-            $modelo = $_POST['modelo'];
-            $categoria = $_POST['categoria'];
-            $precio = $_POST['precio'];
-            $condicion = $_POST['condicion'];
-            if (!isset($_POST['marca']) || !isset($_POST['modelo']) || !isset($_POST['categoria']) || !isset($_POST['precio']) || !isset($_POST['condicion'])) {
+        function insertBike() {
+            $this->sessionHelper->checkUserSession();
+
+            if (!empty($_POST['marca']) && !empty($_POST['modelo']) && !empty($_POST['categoria']) && !empty($_POST['precio']) && isset($_POST['condicion'])) {
                 $marca = $_POST['marca'];
                 $modelo = $_POST['modelo'];
                 $categoria = $_POST['categoria'];
                 $precio = $_POST['precio'];
                 $condicion = $_POST['condicion'];
-                $this->modelBikes->insertBike($marca, $modelo, $categoria, $precio, $condicion);
-                $categories = $this->modelCategories->getCategories();
-                $this->view->insertBike($categories,"Se ha cargado con exito la nueva bicicleta.");
+                $this->modelBikes->insertBike($marca, $modelo, $categoria, $condicion, $precio);
+                $this->showBikes();
             } else {
                 $categories = $this->modelCategories->getCategories();
                 $this->view->insertBike($categories,"Faltan cargar campos.");
             }
             
+        }
+
+        function deleteBike($params = null) {
+            $this->sessionHelper->checkUserSession();
+            if ($_SESSION['permiso']) {
+                $id_bicicleta = $params[':ID'];
+                $this->modelBikes->deleteBike($id_bicicleta);
+                $this->showBikes();
+            } else {
+                header("Location: ".BASE_URL);
+            }
+        }
+
+        function editBike($params = null) {
+            $this->sessionHelper->checkUserSession();
+
+            $marca = $_POST['marca'];
+            $modelo = $_POST['modelo'];
+            $categoria = $_POST['categoria'];
+            $precio = $_POST['precio'];
+            $condicion = $_POST['condicion'];
+            $id = $params[':ID'];
+            $categories = $this->modelCategories->getCategories();
+            if (!empty($marca) && !empty($modelo) && !empty($categoria) && !empty($precio)) {
+                $this->modelBikes->editBike($marca, $modelo, $categoria, $condicion, $precio, $id);
+                header("Location: ".BASE_URL."bike/".$id);
+            } else {
+                $bike = $this->modelBikes->getBike($id);
+                $this->view->bike($bike, $categories, "No se pudo editar la bicicleta, fijese que todos los campos esten llenos.");
+            }
         }
 
     }

@@ -32,6 +32,10 @@
             $sentencia->execute(array($id_bike));
         }
 
+        function editBike($marca, $modelo, $id_categoria, $condicion, $precio, $id_bike) {
+            $sentencia = $this->db->prepare("UPDATE bicicleta SET marca=?, modelo=?, id_categoria=?, condicion=?, precio=? WHERE id_bicicleta=?");
+            $sentencia->execute(array($marca, $modelo, $id_categoria, $condicion, $precio, $id_bike));
+        }
 
     }
 ?>

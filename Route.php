@@ -40,9 +40,19 @@
     $r->addRoute("showInsertBike", "GET", "ControllerBikes", "showInsertBike");
     $r->addRoute("insertBike", "POST", "ControllerBikes", "insertBike");
 
+    $r->addRoute("showInsertCategory", "GET", "ControllerCategories", "showInsertCategory");
+    $r->addRoute("insertCategory", "POST", "ControllerCategories", "insertCategory");
+
     // EDIT
+    $r->addRoute("editBike/:ID", "POST", "ControllerBikes", "editBike");
+    
+    $r->addRoute("editCategory/:ID", "POST", "ControllerCategories", "editCategory");
 
     // DELETE
+    $r->addRoute("deleteBike/:ID", "GET", "ControllerBikes", "deleteBike");
+
+    $r->addRoute("deleteCategory/:ID", "GET", "ControllerCategories", "deleteCategory");
+
 
     //Esto lo veo en TasksView
     $r->addRoute("insert", "POST", "ControllerBikes", "InsertTask");

@@ -18,7 +18,11 @@ require_once 'libs/smarty/Smarty.class.php';
       $this->title = "Home";
       $this->smarty->assign("title", $this->title);
       $this->smarty->assign("isLogged", $isLogged);
-      $this->smarty->assign("hasPermission", $_SESSION['permiso']);
+      if (isset($_SESSION['permiso'])) {
+        $this->smarty->assign("hasPermission", $_SESSION['permiso']);
+      } else {
+        $this->smarty->assign("hasPermission", false);
+      }
       $this->smarty->display('templates/home.tpl');
     }
 
@@ -26,17 +30,23 @@ require_once 'libs/smarty/Smarty.class.php';
 
     function bikes($bikes, $categories) {
       //$this->smarty = new Smarty();
-      session_start();
+      if (!isset($_SESSION)) {
+        session_start();
+      }
       $this->title = "Bicicletas";
       $this->smarty->assign("title", $this->title);
       $this->smarty->assign("isLogged", isset($_SESSION['usuario']));
-      $this->smarty->assign("hasPermission", $_SESSION['permiso']);
+      if (isset($_SESSION['permiso'])) {
+        $this->smarty->assign("hasPermission", $_SESSION['permiso']);
+      } else {
+        $this->smarty->assign("hasPermission", false);
+      }
       $this->smarty->assign("bikes", $bikes);
       $this->smarty->assign("categories", $categories);
       $this->smarty->display('templates/bikes.tpl');
     }
 
-    function bike($bike, $categories) {
+    function bike($bike, $categories, $msj = "") {
       //$this->smarty = new Smarty();
       //session_start();
       $bike = $bike[0];
@@ -44,6 +54,7 @@ require_once 'libs/smarty/Smarty.class.php';
       $this->smarty->assign("title", $this->title);
       $this->smarty->assign("isLogged", isset($_SESSION['usuario']));
       $this->smarty->assign("hasPermission", $_SESSION['permiso']);
+      $this->smarty->assign("msj", $msj);
       $this->smarty->assign("bike", $bike);
       $this->smarty->assign("categories", $categories);
       $this->smarty->display('templates/bike.tpl');

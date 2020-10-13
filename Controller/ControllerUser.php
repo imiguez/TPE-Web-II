@@ -74,20 +74,20 @@ require_once './View/ViewBikes.php';
             $user = $_POST['user'];
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-            if (isset($user)&&isset($email)&&isset($password)) {
+            if (!empty($user) && !empty($email) && !empty($_POST['password'])) {
                 $userDB = $this->model->getUser($user);
                 $userDBemail = $this->model->getUserFromEmail($email);
 
                 if ($userDBemail) {
-                    $this->view->login("El email ya fue registrado.");
+                    $this->view->register("El email ya fue registrado.");
                 } else if ($userDB) {
-                    $this->view->login("El nombre de usuario ya fue registrado.");
+                    $this->view->register("El nombre de usuario ya fue registrado.");
                 } else {
                     $this->model->insertUser($email, $user, $password);
                     header("Location: ".BASE_URL."home");
                 }
             } else {
-                $this->view->login("Le falto completar algún campo.");
+                $this->view->register("Le falto completar algún campo.");
             }
         }
 

@@ -1,17 +1,15 @@
 <?php
 
-require_once './Controller/ControllerSessionHelper.php';
+require_once 'libs/smarty/Smarty.class.php';
 
     class ViewCategories{
 
         private $title;
         private $smarty;
-        private $sessionHelper;
 
 
         function __construct() {
             $this->smarty = new Smarty();
-            $this->sessionHelper = new SessionHelper();
         }
 
 
@@ -29,7 +27,6 @@ require_once './Controller/ControllerSessionHelper.php';
         }      
 
         function categories($categories) {
-            //$this->sessionHelper->checkUserSession();
             $this->title = "Categorías";
             $this->smarty->assign("title", $this->title);
             $this->smarty->assign("isLogged", isset($_SESSION['usuario']));
@@ -44,7 +41,6 @@ require_once './Controller/ControllerSessionHelper.php';
         }
 
         function categoriesAndBikes($categories, $bikes) {
-            //$this->smarty = new Smarty();
             $this->title = "Categorías y Bicicletas";
             $this->smarty->assign("title", $this->title);
             $this->smarty->assign("isLogged", isset($_SESSION['usuario']));

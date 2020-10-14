@@ -6,7 +6,7 @@
 <article class="container" id="article" style="margin: 5% auto; height: auto; background-color: transparent;">
 <div class="row no-gutters bg-light position-relative container" style="background-color: rgba(255, 255, 255, 0.74) !important;">
   <div class="col-md-6 mb-md-0 p-md-4">
-    <img src="img/bikes-list.jpg" class="w-100" alt=".">
+    <img src="img/bicicletas.jpg" class="w-100" alt=".">
   </div>
   <div class="col-md-6 position-static p-4 pl-md-0">
     <h5 class="mt-0">Bicicletas</h5>
@@ -21,12 +21,12 @@
     <a href="categories" class="btn btn-primary stretched-link">Ver Categorías</a>
   </div>
   <div class="col-md-6 mb-md-0 p-md-4">
-    <img src="img/descarga.jpg" class="w-100" alt="...">
+    <img src="img/categorias.jpg" class="w-100" alt="...">
   </div>
 </div>
 <div class="row no-gutters bg-light position-relative container"  style="background-color: rgba(255, 255, 255, 0.74) !important;">
   <div class="col-md-6 mb-md-0 p-md-4">
-    <img src="img/bikes-list.jpg" class="w-100" alt=".">
+    <img src="img/categorias&bicicletas.jpg" class="w-100" alt=".">
   </div>
   <div class="col-md-6 position-static p-4 pl-md-0">
     <h5 class="mt-0">Todas las categorías con sus bicicletas</h5>

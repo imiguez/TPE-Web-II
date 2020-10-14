@@ -26,7 +26,7 @@
         }
 
         function showBikes() {
-            //$this->checkUserSession();
+            $this->sessionHelper->startSessionFixed();
             $bikes = $this->modelBikes->getBikes();
             $categories = $this->modelCategories->getCategories();
             $this->view->bikes($bikes, $categories);
@@ -42,6 +42,7 @@
 
         function showInsertBike() {
             $this->sessionHelper->checkUserSession();
+            $this->sessionHelper->checkUserPermission();
             $categories = $this->modelCategories->getCategories();
             $this->view->insertBike($categories);
         }
@@ -66,13 +67,10 @@
 
         function deleteBike($params = null) {
             $this->sessionHelper->checkUserSession();
-            if ($_SESSION['permiso']) {
+            $this->sessionHelper->checkUserPermission();
                 $id_bicicleta = $params[':ID'];
                 $this->modelBikes->deleteBike($id_bicicleta);
                 $this->showBikes();
-            } else {
-                header("Location: ".BASE_URL);
-            }
         }
 
         function editBike($params = null) {

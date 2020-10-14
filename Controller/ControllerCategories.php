@@ -32,6 +32,7 @@
         }
 
         function showCategories() {
+            $this->sessionHelper->startSessionFixed();
             $categories = $this->modelCategories->getCategories();
             $this->view->categories($categories);
         }
@@ -45,6 +46,7 @@
 
         function showInsertCategory() {
             $this->sessionHelper->checkUserSession();
+            $this->sessionHelper->checkUserPermission();
             $this->view->insertCategory();
         }
 

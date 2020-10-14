@@ -38,7 +38,6 @@ require_once './View/ViewBikes.php';
         }
 
         function verifyUserLogin() {
-            //$email = $_POST['email'];
             $user = $_POST['user'];
             $password = $_POST['password'];
 

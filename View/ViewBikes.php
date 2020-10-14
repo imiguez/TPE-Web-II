@@ -13,8 +13,6 @@ require_once 'libs/smarty/Smarty.class.php';
     }
 
     function showHome($isLogged = false) {
-      //$this->smarty = new Smarty();
-
       $this->title = "Home";
       $this->smarty->assign("title", $this->title);
       $this->smarty->assign("isLogged", $isLogged);
@@ -29,10 +27,6 @@ require_once 'libs/smarty/Smarty.class.php';
 
 
     function bikes($bikes, $categories) {
-      //$this->smarty = new Smarty();
-      if (!isset($_SESSION)) {
-        session_start();
-      }
       $this->title = "Bicicletas";
       $this->smarty->assign("title", $this->title);
       $this->smarty->assign("isLogged", isset($_SESSION['usuario']));
@@ -47,8 +41,6 @@ require_once 'libs/smarty/Smarty.class.php';
     }
 
     function bike($bike, $categories, $msj = "") {
-      //$this->smarty = new Smarty();
-      //session_start();
       $bike = $bike[0];
       $this->title = $bike->modelo;
       $this->smarty->assign("title", $this->title);

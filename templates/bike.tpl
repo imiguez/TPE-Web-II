@@ -32,7 +32,7 @@
                 Usada    
             {/if}
             </td>
-            <td style="align-self: center;">{$bike->precio}</td>
+            <td style="align-self: center;">${$bike->precio}</td>
             {if $hasPermission}
                 <th scope="col" style="border-color: #343a40" ><a href="deleteBike/{$bike->id_bicicleta}" class="w3-xlarge" style="text-decoration: none; color: black"><i class="fa fa-trash"></i></a></th>
             {/if}
@@ -54,10 +54,16 @@
     <div class="form-group">
       <label for="categoria">Categoria</label>
       <select name="categoria" class="form-control">
-          {foreach from=$categories item=category}
+        {foreach from=$categories item=category}
+            {if $bike->id_categoria == $category->id_categoria}
+                <option value="{$category->id_categoria}">{$category->categoria}</option>
+            {/if}
+        {/foreach}
+        {foreach from=$categories item=category}
+            {if $bike->id_categoria != $category->id_categoria}
               <option value="{$category->id_categoria}">{$category->categoria}</option>
-              
-          {/foreach}
+            {/if}
+        {/foreach}
       </select>
     </div>
     <div class="form-group">
@@ -72,7 +78,7 @@
         </div>
         <div>
             <input type="radio" class="form-check-input" id="usada" name="condicion" value="0">
-            <label class="form-check-label" for="usada">Es usasda</label>
+            <label class="form-check-label" for="usada">Es usada</label>
         </div>
         {else}
         <div>

@@ -2,7 +2,6 @@
     require_once 'Controller/ControllerBikes.php';
     require_once 'Controller/ControllerUser.php';
     require_once 'Controller/ControllerCategories.php';
-    //require_once 'Controller/TasksAdvanceController.php';
     require_once 'RouterClass.php';
     
     // CONSTANTES PARA RUTEO
@@ -54,18 +53,9 @@
     $r->addRoute("deleteCategory/:ID", "GET", "ControllerCategories", "deleteCategory");
 
 
-    //Esto lo veo en TasksView
-    $r->addRoute("insert", "POST", "ControllerBikes", "InsertTask");
-
-    $r->addRoute("delete/:ID", "GET", "ControllerBikes", "BorrarLaTaskQueVienePorParametro");
-    $r->addRoute("used/:ID", "GET", "ControllerBikes", "MarkAsCompletedTask");
-    $r->addRoute("edit/:ID", "GET", "ControllerBikes", "EditTask");
 
     //Ruta por defecto.
     $r->setDefaultRoute("ControllerBikes", "showHome");
-
-    //Advance
-    //$r->addRoute("autocompletar", "GET", "TasksAdvanceController", "AutoCompletar");
 
     //run
     $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']); 

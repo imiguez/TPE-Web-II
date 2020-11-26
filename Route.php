@@ -44,14 +44,22 @@
 
     // EDIT
     $r->addRoute("editBike/:ID", "POST", "ControllerBikes", "editBike");
-    
     $r->addRoute("editCategory/:ID", "POST", "ControllerCategories", "editCategory");
 
     // DELETE
     $r->addRoute("deleteBike/:ID", "GET", "ControllerBikes", "deleteBike");
-
     $r->addRoute("deleteCategory/:ID", "GET", "ControllerCategories", "deleteCategory");
 
+
+    //                      GESTION DE USUARIOS
+
+    $r->addRoute("showUserList", "GET", "ControllerUser", "showUserList");
+
+    // DELETE USUARIO
+    $r->addRoute("deleteUser/:ID", "GET", "ControllerUser", "deleteUser");
+
+    // EDIT PERMISO DE USUARIO
+    $r->addRoute("editUserPermission/:ID", "GET", "ControllerUser", "editUserPermission");
 
 
     //Ruta por defecto.

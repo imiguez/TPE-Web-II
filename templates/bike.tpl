@@ -34,7 +34,7 @@
             </td>
             <td style="align-self: center;">${$bike->precio}</td>
             {if $hasPermission}
-                <th scope="col" style="border-color: #343a40" ><a href="deleteBike/{$bike->id_bicicleta}" class="w3-xlarge" style="text-decoration: none; color: black"><i class="fa fa-trash"></i></a></th>
+                <th scope="col"><a href="deleteBike/{$bike->id_bicicleta}" class="w3-xlarge" style="text-decoration: none; color: black"><i class="fa fa-trash"></i></a></th>
             {/if}
     </tbody>
 </table>     

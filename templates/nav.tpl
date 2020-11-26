@@ -14,6 +14,7 @@
       <div id="dropdown-menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" href="showInsertBike">Agregar Bicicleta</a>
         <a class="dropdown-item" href="showInsertCategory">Agregar Categoría</a>
+        <a class="dropdown-item" href="showUserList">Gestionar Usuarios</a>
       </div>
     </div>
     {/if}

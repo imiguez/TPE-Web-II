@@ -24,14 +24,21 @@ require_once 'libs/smarty/Smarty.class.php';
         }
 
         function register($msj = "") {
-            $this->title = "Registracion";
+            $this->title = "Registro";
             $this->smarty->assign("title", $this->title);
             $this->smarty->assign("isLogged", isset($_SESSION['usuario']));
             $this->smarty->assign("msj", $msj);
             $this->smarty->display("templates/register.tpl");
         }
 
-
+        function userList($users) {
+            $this->title = "Lista de Usuarios";
+            $this->smarty->assign("title", $this->title);
+            $this->smarty->assign("isLogged", isset($_SESSION['usuario']));
+            $this->smarty->assign("hasPermission", $_SESSION['permiso']);
+            $this->smarty->assign("users", $users);
+            $this->smarty->display("templates/userList.tpl");
+        }
 
     }
 

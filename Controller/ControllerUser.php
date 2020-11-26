@@ -1,7 +1,7 @@
 <?php
 
 require_once './Model/ModelCategories.php';
-
+require_once './SessionHelper.php';
 require_once './Model/ModelUser.php';
 require_once './View/ViewUser.php';
 require_once './View/ViewBikes.php';
@@ -13,6 +13,7 @@ require_once './View/ViewBikes.php';
         private $modelCategories;
         private $view;
         private $viewBikes;
+        private $sessionHelper;
 
 
         function __construct() {
@@ -20,6 +21,7 @@ require_once './View/ViewBikes.php';
             $this->model = new ModelUser();
             $this->view = new ViewUser();
             $this->viewBikes = new ViewBikes();
+            $this->sessionHelper = new SessionHelper();
         }
 
         function showLogin() {
@@ -83,6 +85,11 @@ require_once './View/ViewBikes.php';
                     $this->view->register("El nombre de usuario ya fue registrado.");
                 } else {
                     $this->model->insertUser($email, $user, $password);
+                    session_start();
+                    $_SESSION['usuario'] = $user;
+                    $_SESSION['password'] = $password;
+                    $_SESSION['email'] = $email;
+                    $_SESSION['permiso'] = false;
                     header("Location: ".BASE_URL."home");
                 }
             } else {
@@ -90,8 +97,35 @@ require_once './View/ViewBikes.php';
             }
         }
 
+        function showUserList() {
+            $this->sessionHelper->checkUserSession();
+            $this->sessionHelper->checkUserPermission();
+            $users = $this->model->getUsers();
+            $this->view->userList($users);
+        }
 
+        function deleteUser($params = null) {
+            $this->sessionHelper->checkUserSession();
+            $this->sessionHelper->checkUserPermission();
+            $id = $params[':ID'];
+            $this->model->deleteUser($id);
+            header("Location: ".BASE_URL."showUserList");
+        }
 
+        function editUserPermission($params = null) {
+            $this->sessionHelper->checkUserSession();
+            $this->sessionHelper->checkUserPermission();
+            $id = $params[':ID'];
+            $userPermission = $this->model->getUserPermission($id);
+            if ($userPermission->permiso == 0) {
+                $this->model->editUserPermission($id, 1);
+                $_SESSION['permiso'] = true;
+            } else {
+                $this->model->editUserPermission($id, 0);
+                $_SESSION['permiso'] = false;
+            }
+            header("Location: ".BASE_URL."showUserList");
+        }
     }
 
 ?>

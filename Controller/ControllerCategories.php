@@ -3,7 +3,7 @@
     require_once './Model/ModelCategories.php';
     require_once './Model/ModelBikes.php';
     require_once './View/ViewCategories.php';
-    require_once './Controller/ControllerSessionHelper.php';
+    require_once './SessionHelper.php';
 
 
     class ControllerCategories{

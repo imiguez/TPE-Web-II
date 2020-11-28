@@ -32,8 +32,8 @@
             $this->view->bikes($bikes, $categories);
         }
 
-        function showBike($params = null){
-            $this->sessionHelper->checkUserSession();
+        function showBike($params = null) {
+            $this->sessionHelper->startSessionFixed();
             $id_bicicleta = $params[':ID'];
             $bike = $this->modelBikes->getBike($id_bicicleta);
             $categories = $this->modelCategories->getCategories();

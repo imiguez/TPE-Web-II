@@ -45,7 +45,11 @@ require_once 'libs/smarty/Smarty.class.php';
       $this->title = $bike->modelo;
       $this->smarty->assign("title", $this->title);
       $this->smarty->assign("isLogged", isset($_SESSION['usuario']));
-      $this->smarty->assign("hasPermission", $_SESSION['permiso']);
+      if (isset($_SESSION['permiso'])) {
+        $this->smarty->assign("hasPermission", $_SESSION['permiso']);
+      } else {
+        $this->smarty->assign("hasPermission", false);
+      }
       $this->smarty->assign("msj", $msj);
       $this->smarty->assign("bike", $bike);
       $this->smarty->assign("categories", $categories);

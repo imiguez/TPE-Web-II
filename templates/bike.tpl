@@ -38,6 +38,12 @@
             {/if}
     </tbody>
 </table>     
+{if $isLogged}
+    
+{/if}
+<div data-spy="scroll" id="comment-container">
+
+</div>
 
 {if $hasPermission}
     <article style="width: 60rem; display: flex; flex-direction: column; color: white; background-color: #242527cc; margin: 0 auto 70px auto; padding: 20px 40px">
@@ -99,5 +105,5 @@
     {/if}
 </article>
 {/if}
-
+<script src="./js/comentarios.js" type="text/javascript"> </script>
 {include file="footer.tpl"}

@@ -19,6 +19,7 @@ require_once 'libs/smarty/Smarty.class.php';
             $this->smarty->assign("title", $this->title);
             $this->smarty->assign("isLogged", isset($_SESSION['usuario']));
             $this->smarty->assign("hasPermission", $_SESSION['permiso']);
+            $this->smarty->assign("user", $_SESSION['usuario']);
             $this->smarty->assign("category", $category);
             $this->smarty->assign("bikes", $bikes);
             $this->smarty->assign("msj", $msj);
@@ -32,6 +33,7 @@ require_once 'libs/smarty/Smarty.class.php';
             $this->smarty->assign("isLogged", isset($_SESSION['usuario']));
             if (isset($_SESSION['permiso'])) {
                 $this->smarty->assign("hasPermission", $_SESSION['permiso']);
+                $this->smarty->assign("user", $_SESSION['usuario']);
               } else {
                 $this->smarty->assign("hasPermission", false);
               }
@@ -45,6 +47,7 @@ require_once 'libs/smarty/Smarty.class.php';
             $this->smarty->assign("title", $this->title);
             $this->smarty->assign("isLogged", isset($_SESSION['usuario']));
             $this->smarty->assign("hasPermission", $_SESSION['permiso']);
+            $this->smarty->assign("user", $_SESSION['usuario']);
             $this->smarty->assign("categories", $categories);
             $this->smarty->assign("bikes", $bikes);
             $this->smarty->display('templates/categoriesAndBikes.tpl');
@@ -55,6 +58,7 @@ require_once 'libs/smarty/Smarty.class.php';
             $this->smarty->assign("title", $this->title);
             $this->smarty->assign("isLogged", isset($_SESSION['usuario']));
             $this->smarty->assign("hasPermission", $_SESSION['permiso']);
+            $this->smarty->assign("user", $_SESSION['usuario']);
             $this->smarty->assign("msj", $msj);
             $this->smarty->display("templates/insertCategory.tpl");
         }

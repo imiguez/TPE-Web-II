@@ -12,12 +12,13 @@ require_once 'libs/smarty/Smarty.class.php';
       $this->smarty = new Smarty();
     }
 
-    function showHome($isLogged = false) {
+    function showHome() {
       $this->title = "Home";
       $this->smarty->assign("title", $this->title);
-      $this->smarty->assign("isLogged", $isLogged);
+      $this->smarty->assign("isLogged", isset($_SESSION['usuario']));
       if (isset($_SESSION['permiso'])) {
         $this->smarty->assign("hasPermission", $_SESSION['permiso']);
+        $this->smarty->assign("user", $_SESSION['usuario']);
       } else {
         $this->smarty->assign("hasPermission", false);
       }
@@ -32,6 +33,7 @@ require_once 'libs/smarty/Smarty.class.php';
       $this->smarty->assign("isLogged", isset($_SESSION['usuario']));
       if (isset($_SESSION['permiso'])) {
         $this->smarty->assign("hasPermission", $_SESSION['permiso']);
+        $this->smarty->assign("user", $_SESSION['usuario']);
       } else {
         $this->smarty->assign("hasPermission", false);
       }
@@ -45,8 +47,10 @@ require_once 'libs/smarty/Smarty.class.php';
       $this->title = $bike->modelo;
       $this->smarty->assign("title", $this->title);
       $this->smarty->assign("isLogged", isset($_SESSION['usuario']));
-      if (isset($_SESSION['permiso'])) {
+      if (isset($_SESSION['usuario'])) {
         $this->smarty->assign("hasPermission", $_SESSION['permiso']);
+        $this->smarty->assign("user", $_SESSION['usuario']);
+        $this->smarty->assign("id_user", $_SESSION['id_usuario']);
       } else {
         $this->smarty->assign("hasPermission", false);
       }
@@ -62,6 +66,7 @@ require_once 'libs/smarty/Smarty.class.php';
       $this->smarty->assign("title", $this->title);
       $this->smarty->assign("isLogged", isset($_SESSION['usuario']));
       $this->smarty->assign("hasPermission", $_SESSION['permiso']);
+      $this->smarty->assign("user", $_SESSION['usuario']);
       $this->smarty->assign("categories", $categories);
       $this->smarty->assign("msj", $msj);
       $this->smarty->display("templates/insertBike.tpl");

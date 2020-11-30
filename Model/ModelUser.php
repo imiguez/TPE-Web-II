@@ -15,7 +15,7 @@
         function getUser($user) {
             $sentencia = $this->db->prepare("SELECT * FROM usuario WHERE usuario=?");
             $sentencia->execute(array($user));
-            return $sentencia->fetchAll(PDO::FETCH_OBJ);
+            return $sentencia->fetch(PDO::FETCH_OBJ);
         }
 
         function getUserFromEmail($email) {
@@ -27,6 +27,7 @@
         function insertUser($email, $name, $password) {
             $sentencia = $this->db->prepare("INSERT INTO usuario(usuario, email, contraseña, permiso) VALUES(?, ?, ?, ?)");
             $sentencia->execute(array($name, $email, $password, false));
+            return $this->db->lastInsertId();
         }
 
         function getUsers() {

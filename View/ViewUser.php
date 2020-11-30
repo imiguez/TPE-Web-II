@@ -46,6 +46,7 @@ require_once 'libs/smarty/Smarty.class.php';
             $this->smarty->assign("title", $this->title);
             $this->smarty->assign("isLogged", isset($_SESSION['usuario']));
             $this->smarty->assign("hasPermission", $_SESSION['permiso']);
+            $this->smarty->assign("user", $_SESSION['usuario']);
             $this->smarty->assign("users", $users);
             $this->smarty->display("templates/userList.tpl");
         }

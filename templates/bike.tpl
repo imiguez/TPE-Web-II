@@ -38,12 +38,6 @@
             {/if}
     </tbody>
 </table>     
-{if $isLogged}
-    
-{/if}
-<div data-spy="scroll" id="comment-container">
-
-</div>
 
 {if $hasPermission}
     <article style="width: 60rem; display: flex; flex-direction: column; color: white; background-color: #242527cc; margin: 0 auto 70px auto; padding: 20px 40px">
@@ -105,5 +99,45 @@
     {/if}
 </article>
 {/if}
-<script src="./js/comentarios.js" type="text/javascript"> </script>
+
+<div id="comment-container" class="container">
+
+    <input name="bike-id" id="bike-id" value={$bike->id_bicicleta} style="display: none">
+    {if $isLogged}
+        <div id="comment-form" style="width: 60rem; display: flex; flex-direction: column; color: white; background-color: #242527cc; margin: 0 auto 70px auto; padding: 20px 40px">
+            <form>
+                <input name="user-id" id="user-id" value={$id_user} style="display: none">
+                <input type="text" name="user" id="user" value="{$user}" style="display: none">
+                <div class="form-group form-check">
+                    <label for="punctuation-1" class="stars-label"><i class="fa fa-star star" aria-hidden="true"></i>
+                    <input type="radio" name="punctuation" id="punctuation-1" value=5 style="display: none;">
+                    <label for="punctuation-2" class="stars-label"><i class="fa fa-star star" aria-hidden="true"></i>
+                    <input type="radio" name="punctuation" id="punctuation-2" value=4 style="display: none;">
+                    <label for="punctuation-3" class="stars-label"><i class="fa fa-star star" aria-hidden="true"></i>
+                    <input type="radio" name="punctuation" id="punctuation-3" value=3 style="display: none;">
+                    <label for="punctuation-4" class="stars-label"><i class="fa fa-star star" aria-hidden="true"></i>
+                    <input type="radio" name="punctuation" id="punctuation-4" value=2 style="display: none;">
+                    <label for="punctuation-5" class="stars-label"><i class="fa fa-star star" aria-hidden="true"></i>
+                    <input type="radio" name="punctuation" id="punctuation-5" value=1 style="display: none;">
+                </div>
+                <div class="form-group">
+                    <label for="title">Titulo del Comentario</label>
+                    <input type="text" class="form-control" id="title" name="title">
+                </div>
+                <div class="form-group">
+                    <label for="description">Descripcion del Comentario</label>
+                    <input type="text" class="form-control" id="description" name="description">
+                </div>
+                <button type="button" class="btn btn-primary" id="comment-form-btn">Enviar</button>
+            </form>
+        </div>
+    {else}
+        <button type="button" class="btn btn-primary" id="comment-form-btn" style="display: none">Enviar</button>
+    {/if}
+    {include file="vue/comments.vue"}
+</div>
+
+
+<script src="./js/comments.js" type="text/javascript"> </script>
+
 {include file="footer.tpl"}

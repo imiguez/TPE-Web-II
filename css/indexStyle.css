@@ -1,6 +1,3 @@
-article {
-}
-
 
 #dropdown-menu {
     position: relative;
@@ -9,4 +6,17 @@ article {
 .dropdown-item {
     background-color: white !important;
     color: #343a40 !important;
+}
+
+.star {
+    font-size: 20px;
+}
+
+.checked {
+    color: orange;
+}
+
+.stars-label i:hover {
+    color: orange;
+    cursor: pointer;
 }

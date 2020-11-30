@@ -5,5 +5,6 @@
         {if $hasPermission}
             <script src="./js/nav.js" type="text/javascript"> </script>
         {/if}
+        
     </body>
 </html>

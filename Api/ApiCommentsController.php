@@ -18,7 +18,7 @@ class ApiCommentsController extends ApiController{
         if ($comments) {
             $this->view->response($comments, 200);
         } else {
-            $this->view->response("Error, la bicicleta con el id=".$id_bike." no existe.", 404);
+            $this->view->response("Error, la bicicleta con el id=".$id_bike." no tiene comentarios.", 404);
         }
     }
     
@@ -34,9 +34,9 @@ class ApiCommentsController extends ApiController{
 
     public function insertComment($params = null) {
         $body = $this->getData();
-        $id_comment = $this->model->insertComment($body->id_usuario, $body->id_bicicleta, $body->puntuacion, $body->titulo, $body->descripcion);
+        $id_comment = $this->model->insertComment($body->id_usuario, $body->id_bicicleta, $body->puntuacion, $body->titulo, $body->descripcion, $body->usuario);
         if ($id_comment) {
-            $this->view->response($this->model->getComment($id_comment), 200);
+            $this->view->response("Se agrego el comentario con exito.", 200);
         } else {
             $this->view->response("Error, no se pudo agregar el comentario.", 404);
         }

@@ -47,7 +47,7 @@ require_once './View/ViewBikes.php';
                 $userDB = $this->model->getUser($user);
 
                 if ($userDB) {
-                    $userDB = $userDB[0];
+                    $userDB = $userDB;
                     if (password_verify($password, $userDB->contraseña)) {
                         session_start();
                         $_SESSION['id_usuario'] = $userDB->id_usuario;
@@ -84,8 +84,9 @@ require_once './View/ViewBikes.php';
                 } else if ($userDB) {
                     $this->view->register("El nombre de usuario ya fue registrado.");
                 } else {
-                    $this->model->insertUser($email, $user, $password);
+                    $id = $this->model->insertUser($email, $user, $password);
                     session_start();
+                    $_SESSION['id_usuario'] = $id;
                     $_SESSION['usuario'] = $user;
                     $_SESSION['password'] = $password;
                     $_SESSION['email'] = $email;
@@ -119,10 +120,12 @@ require_once './View/ViewBikes.php';
             $userPermission = $this->model->getUserPermission($id);
             if ($userPermission->permiso == 0) {
                 $this->model->editUserPermission($id, 1);
-                $_SESSION['permiso'] = true;
+                if ($id == $_SESSION['id_usuario']) 
+                    $_SESSION['permiso'] = true;
             } else {
                 $this->model->editUserPermission($id, 0);
-                $_SESSION['permiso'] = false;
+                if ($id == $_SESSION['id_usuario']) 
+                    $_SESSION['permiso'] = false;
             }
             header("Location: ".BASE_URL."showUserList");
         }

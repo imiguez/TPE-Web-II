@@ -27,9 +27,10 @@ require_once 'libs/smarty/Smarty.class.php';
 
 
 
-    function bikes($bikes, $categories) {
+    function bikes($bikes, $categories, $paginationBikes, $actualPage) {
       $this->title = "Bicicletas";
       $this->smarty->assign("title", $this->title);
+      $this->smarty->assign("pages", ceil(count($bikes) / 3));
       $this->smarty->assign("isLogged", isset($_SESSION['usuario']));
       if (isset($_SESSION['permiso'])) {
         $this->smarty->assign("hasPermission", $_SESSION['permiso']);
@@ -38,6 +39,8 @@ require_once 'libs/smarty/Smarty.class.php';
         $this->smarty->assign("hasPermission", false);
       }
       $this->smarty->assign("bikes", $bikes);
+      $this->smarty->assign("actualPage", $actualPage);
+      $this->smarty->assign("paginationBikes", $paginationBikes);
       $this->smarty->assign("categories", $categories);
       $this->smarty->display('templates/bikes.tpl');
     }

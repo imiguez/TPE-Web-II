@@ -17,7 +17,6 @@ async function getComments() {
             setTimeout(() => {
                 let btns = document.getElementsByClassName("delete-comment");
                 for (let i = 0; i < btns.length; i++) {
-                    console.log(btns[i].id);
                     btns[i].addEventListener('click', () => {deleteComment(btns[i].id)});
                 }
             }, 1000);
@@ -37,7 +36,8 @@ async function deleteComment(id) {
         if (response.ok) {
             let msj = await response.json();
             console.log(msj);
-            app.comments.pop();
+            app.comments = [];
+            getComments();
         }
     } catch (error) {
         console.log(error);
@@ -45,25 +45,33 @@ async function deleteComment(id) {
 }
 
 async function insertComment() {
-    let comment = {
-        id_usuario: document.querySelector("input[name='user-id']").value,
-        id_bicicleta: document.querySelector("input[name='bike-id']").value,
-        puntuacion: document.querySelector("input[name='punctuation']:checked").value,
-        titulo: document.querySelector("input[name='title']").value,
-        descripcion: document.querySelector("input[name='description']").value,
-        usuario: document.querySelector("input[name='user']").value
-    }
     try {
-        let response = await fetch('api/comment', {
-            method: 'POST',
-            header: 'Content-Type: application/json',
-            body: JSON.stringify(comment)
-        });
-        if (response.ok) {
-            let comment = await response.json();
-            console.log(comment);
-            getComments();
+        let comment = {
+            id_usuario: document.querySelector("input[name='user-id']").value,
+            id_bicicleta: document.querySelector("input[name='bike-id']").value,
+            puntuacion: document.querySelector("input[name='punctuation']:checked").value,
+            titulo: document.querySelector("input[name='title']").value,
+            descripcion: document.querySelector("#description").value,
+            usuario: document.querySelector("input[name='user']").value
         }
+        if (comment['titulo'] == "" || comment['descripcion'] == "") {
+            console.log("Campos sin completar. Intente de nuevo.");
+        } else {
+            try {
+                let response = await fetch('api/comment', {
+                    method: 'POST',
+                    header: 'Content-Type: application/json',
+                    body: JSON.stringify(comment)
+                });
+                if (response.ok) {
+                    let comment = await response.json();
+                    console.log(comment);
+                    getComments();
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        } 
     } catch (error) {
         console.log(error);
     }

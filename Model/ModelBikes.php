@@ -21,6 +21,13 @@
             return $sentencia->fetchAll(PDO::FETCH_OBJ);
         }
 
+        function getPaginationBikes($desde) {
+            $desde = (int) $desde;
+            $sql = "SELECT * FROM bicicleta LIMIT ".($desde*3).",3";
+            $sentencia = $this->db->prepare($sql);
+            $sentencia->execute();
+            return $sentencia->fetchAll(PDO::FETCH_OBJ);
+        }
 
         function insertBike($marca, $modelo, $id_categoria, $condicion, $precio) {
             $sentencia = $this->db->prepare("INSERT INTO bicicleta(marca, modelo, id_categoria, condicion, precio) VALUE(?, ?, ?, ?, ?)");

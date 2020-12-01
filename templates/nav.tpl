@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark bg-dark" style="height: 20vh; margin-bottom: 150px">
   <a class="navbar-brand" style="color: white; font-size: 32px" href="home">Home</a>
-  <a class="nav-link" style="color: white; font-size: 22px"  href="bikes">Bicicletas <span class="sr-only">(current)</span></a>
+  <a class="nav-link" style="color: white; font-size: 22px"  href="bikes/1">Bicicletas <span class="sr-only">(current)</span></a>
   <a class="nav-link" style="color: white; font-size: 22px"  href="categories">Categorías <span class="sr-only">(current)</span></a>
   <a class="nav-link" style="color: white; font-size: 22px"  href="categoriesAndBikes">Bicicletas & Categorías <span class="sr-only">(current)</span></a>
   {if $isLogged}

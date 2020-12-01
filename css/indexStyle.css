@@ -15,8 +15,17 @@
 .checked {
     color: orange;
 }
+#radio-inputs {
+    display: flex;
+    flex-direction: row-reverse;
+}
 
-.stars-label i:hover {
+
+#radio-inputs label:hover, #radio-inputs label:hover ~ label {
     color: orange;
     cursor: pointer;
+}
+
+#radio-inputs input[type="radio"]:checked ~ label {
+    color: orange;
 }

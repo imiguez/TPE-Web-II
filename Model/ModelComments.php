@@ -20,9 +20,9 @@ class ModelComments{
         return $sentencia->fetch(PDO::FETCH_OBJ);
     }
 
-    function insertComment($id_user, $id_bike, $punctuation, $title, $description) {
-        $sentencia = $this->db->prepare("INSERT INTO comentario(id_usuario, id_bicicleta, puntuacion, titulo, descripcion) VALUE (?,?,?,?,?)");
-        $sentencia->execute(array($id_user, $id_bike, $punctuation, $title, $description));
+    function insertComment($id_user, $id_bike, $punctuation, $title, $description, $user) {
+        $sentencia = $this->db->prepare("INSERT INTO comentario(id_usuario, id_bicicleta, puntuacion, titulo, descripcion, usuario) VALUE (?,?,?,?,?,?)");
+        $sentencia->execute(array($id_user, $id_bike, $punctuation, $title, $description, $user));
         return $this->db->lastInsertId();
     }
 
@@ -31,8 +31,8 @@ class ModelComments{
         $sentencia->execute(array($id_comment));
     }
 
-    function editComment($id_comment, $id_user, $id_bike, $punctuation, $title, $description, $user) {
-        $sentencia = $this->db->prepare("UPDATE comentario SET id_usuario=?, id_bicicleta=?, puntuacion=?, titulo=?, descripcion=?, usuario=? WHERE id_comentario=?");
-        $sentencia->execute(array($id_user, $id_bike, $punctuation, $title, $description, $user, $id_comment));
+    function editComment($id_comment, $id_user, $id_bike, $punctuation, $title, $description) {
+        $sentencia = $this->db->prepare("UPDATE comentario SET id_usuario=?, id_bicicleta=?, puntuacion=?, titulo=?, descripcion=? WHERE id_comentario=?");
+        $sentencia->execute(array($id_user, $id_bike, $punctuation, $title, $description, $id_comment));
     }
 }

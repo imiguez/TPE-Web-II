@@ -25,11 +25,13 @@
             $this->view->showHome(isset($_SESSION['usuario']));
         }
 
-        function showBikes() {
+        function showBikes($params = null) {
             $this->sessionHelper->startSessionFixed();
             $bikes = $this->modelBikes->getBikes();
+            $desde = (int) $params[':ID'];
+            $paginationBikes = $this->modelBikes->getPaginationBikes($desde-1);
             $categories = $this->modelCategories->getCategories();
-            $this->view->bikes($bikes, $categories);
+            $this->view->bikes($bikes, $categories, $paginationBikes, $desde);
         }
 
         function showBike($params = null) {
@@ -57,7 +59,7 @@
                 $precio = $_POST['precio'];
                 $condicion = $_POST['condicion'];
                 $this->modelBikes->insertBike($marca, $modelo, $categoria, $condicion, $precio);
-                $this->showBikes();
+                header("Location: ".BASE_URL."bikes/1");
             } else {
                 $categories = $this->modelCategories->getCategories();
                 $this->view->insertBike($categories,"Faltan cargar campos.");

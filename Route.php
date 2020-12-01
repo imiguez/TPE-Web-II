@@ -14,7 +14,7 @@
     // HOME
     $r->addRoute("home", "GET", "ControllerBikes", "showHome");
     // BIKES
-    $r->addRoute("bikes", "GET", "ControllerBikes", "showBikes");
+    $r->addRoute("bikes/:ID", "GET", "ControllerBikes", "showBikes");
     // CATEGORIES
     $r->addRoute("categories", "GET", "ControllerCategories", "showCategories");
     // CATEGORIES AND BIKES

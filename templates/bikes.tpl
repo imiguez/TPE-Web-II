@@ -2,7 +2,7 @@
 
 {include file="nav.tpl"}
 
-<table class="table table-bordered container" style="background-color: white; text-align: center;  margin: 20vh auto 35vh auto; height: auto">
+<table class="table table-bordered container" style="background-color: white; text-align: center;  margin: 20vh auto 10vh auto; height: auto">
     <thead style="background-color: #343a40; color: white">
         <tr>
         <th scope="col" style="border-color: #343a40">Marca</th>
@@ -15,7 +15,7 @@
     </thead>
     <tbody>
 
-    {foreach from=$bikes item=bike} 
+    {foreach from=$paginationBikes item=bike} 
         <tr>
             <td>{$bike->marca}</td>
             <td>{$bike->modelo}</td>
@@ -36,5 +36,31 @@
 
     </tbody>
 </table>
+
+<nav class="container" style="display: flex; justify-content: center;" aria-label="Page navigation example">
+  <ul class="pagination">
+      {if $actualPage <= 1}
+        <li class="page-item disabled"><a class="page-link" href="bikes/{$actualPage-1}">Anterior</a></li>
+    {else}
+        <li class="page-item"><a class="page-link" href="bikes/{$actualPage-1}">Anterior</a></li>
+    {/if}
+    {for $page=1 to $pages}
+        {if $page <= $actualPage+1 && $page >= $actualPage-1 && $page != $actualPage}
+            <li class="page-item"><a class="page-link" href="bikes/{$page}">{$page}</a></li>
+        {/if}
+        {if $page == $actualPage}
+            <li class="page-item active"><a class="page-link" href="bikes/{$page}">{$page}</a></li>
+        {/if}
+    {/for}
+    {if $actualPage == 1}
+        <li class="page-item"><a class="page-link" href="bikes/3">3</a></li>
+    {/if}
+    {if $actualPage >= $pages}
+        <li class="page-item disabled"><a class="page-link" href="bikes/{$actualPage+1}">Siguiente</a></li>
+    {else}
+        <li class="page-item"><a class="page-link" href="bikes/{$actualPage+1}">Siguiente</a></li>
+    {/if}
+  </ul>
+</nav>
 
 {include file="footer.tpl"}

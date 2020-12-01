@@ -108,25 +108,27 @@
             <form>
                 <input name="user-id" id="user-id" value={$id_user} style="display: none">
                 <input type="text" name="user" id="user" value="{$user}" style="display: none">
-                <div class="form-group form-check">
-                    <label for="punctuation-1" class="stars-label"><i class="fa fa-star star" aria-hidden="true"></i>
-                    <input type="radio" name="punctuation" id="punctuation-1" value=5 style="display: none;">
-                    <label for="punctuation-2" class="stars-label"><i class="fa fa-star star" aria-hidden="true"></i>
-                    <input type="radio" name="punctuation" id="punctuation-2" value=4 style="display: none;">
-                    <label for="punctuation-3" class="stars-label"><i class="fa fa-star star" aria-hidden="true"></i>
+
+                <div id="radio-inputs" class="form-group form-check">
+                    <input type="radio" name="punctuation" id="punctuation-5" value=5 style="display: none;">
+                    <label for="punctuation-5"><i class="fa fa-star star"></i></label>
+                    <input type="radio" name="punctuation" id="punctuation-4" value=4 style="display: none;">
+                    <label for="punctuation-4"><i class="fa fa-star star"></i></label>
                     <input type="radio" name="punctuation" id="punctuation-3" value=3 style="display: none;">
-                    <label for="punctuation-4" class="stars-label"><i class="fa fa-star star" aria-hidden="true"></i>
-                    <input type="radio" name="punctuation" id="punctuation-4" value=2 style="display: none;">
-                    <label for="punctuation-5" class="stars-label"><i class="fa fa-star star" aria-hidden="true"></i>
-                    <input type="radio" name="punctuation" id="punctuation-5" value=1 style="display: none;">
+                    <label for="punctuation-3"><i class="fa fa-star star"></i></label>
+                    <input type="radio" name="punctuation" id="punctuation-2" value=2 style="display: none;">
+                    <label for="punctuation-2"><i class="fa fa-star star"></i></label>
+                    <input type="radio" name="punctuation" id="punctuation-1" value=1 style="display: none;">
+                    <label for="punctuation-1"><i class="fa fa-star star"></i></label>
                 </div>
+
                 <div class="form-group">
                     <label for="title">Titulo del Comentario</label>
-                    <input type="text" class="form-control" id="title" name="title">
+                    <input type="text" class="form-control" id="title" name="title" maxlength="50" size="50">
                 </div>
                 <div class="form-group">
                     <label for="description">Descripcion del Comentario</label>
-                    <input type="text" class="form-control" id="description" name="description">
+                    <textarea class="form-control" id="description" name="description" style="height: 90px; resize: none; box-sizing: border-box;"></textarea>
                 </div>
                 <button type="button" class="btn btn-primary" id="comment-form-btn">Enviar</button>
             </form>

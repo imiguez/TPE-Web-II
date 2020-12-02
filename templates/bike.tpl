@@ -10,7 +10,9 @@
             <th scope="col" style="border-color: #343a40">Categoría</th>
             <th scope="col" style="border-color: #343a40">Condicion</th>
             <th scope="col" style="border-color: #343a40">Precio</th>
+            <th scope="col" style="border-color: #343a40">Imagen</th>
             {if $hasPermission}
+                <th scope="col" style="border-color: #343a40" >Opciones de Imagen</th>
                 <th scope="col" style="border-color: #343a40" ><i class="fa fa-trash"></i></th>
             {/if}
         </tr>
@@ -33,8 +35,13 @@
             {/if}
             </td>
             <td style="align-self: center;">${$bike->precio}</td>
+            <td style="align-self: center;"><img src="data:image/jpg; base64,{$image}" style="width: 150px;"/></td>
             {if $hasPermission}
-                <th scope="col"><a href="deleteBike/{$bike->id_bicicleta}" class="w3-xlarge" style="text-decoration: none; color: black"><i class="fa fa-trash"></i></a></th>
+                <td scope="col">
+                    <a href="deleteBikeImage/{$bike->id_bicicleta}" class="w3-xlarge" style="text-decoration: none; color: black; margin-right: 15px;"><i class="fa fa-times"></i></a>
+                    <a href="showEditBikeImage/{$bike->id_bicicleta}" class="w3-xlarge" style="text-decoration: none; color: black; margin-left: 15px;"><i class="fa fa-pencil-square-o"></i></a>
+                </td>
+                <td scope="col"><a href="deleteBike/{$bike->id_bicicleta}" class="w3-xlarge" style="text-decoration: none; color: black"><i class="fa fa-trash"></i></a></td>
             {/if}
     </tbody>
 </table>     
@@ -45,11 +52,11 @@
   <form action="editBike/{$bike->id_bicicleta}" method="POST">
     <div class="form-group">
       <label for="marca">Marca</label>
-      <input type="text" class="form-control" id="marca" name="marca" aria-describedby="emailHelp" value="{$bike->marca}">
+      <input type="text" class="form-control" required id="marca" name="marca" aria-describedby="emailHelp" value="{$bike->marca}">
     </div>
     <div class="form-group">
       <label for="modelo">Modelo</label>
-      <input type="text" class="form-control" id="modelo" name="modelo" value="{$bike->modelo}">
+      <input type="text" class="form-control" required id="modelo" name="modelo" value="{$bike->modelo}">
     </div>
     <div class="form-group">
       <label for="categoria">Categoria</label>
@@ -68,7 +75,7 @@
     </div>
     <div class="form-group">
       <label for="precio">Precio</label>
-      <input type="number" class="form-control" id="precio" name="precio" value="{$bike->precio}">
+      <input type="number" required class="form-control" id="precio" name="precio" value="{$bike->precio}">
     </div>
     <div class="form-group form-check">
         {if $bike->condicion == 1}

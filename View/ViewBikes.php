@@ -45,8 +45,7 @@ require_once 'libs/smarty/Smarty.class.php';
       $this->smarty->display('templates/bikes.tpl');
     }
 
-    function bike($bike, $categories, $msj = "") {
-      $bike = $bike[0];
+    function bike($bike, $categories, $image, $msj = "") {
       $this->title = $bike->modelo;
       $this->smarty->assign("title", $this->title);
       $this->smarty->assign("isLogged", isset($_SESSION['usuario']));
@@ -58,11 +57,22 @@ require_once 'libs/smarty/Smarty.class.php';
         $this->smarty->assign("hasPermission", false);
       }
       $this->smarty->assign("msj", $msj);
+      $this->smarty->assign("image", $image);
       $this->smarty->assign("bike", $bike);
       $this->smarty->assign("categories", $categories);
       $this->smarty->display('templates/bike.tpl');
     }
 
+    function editBikeImage($id, $msj = "") {
+      $this->title = "Editar Imagen";
+      $this->smarty->assign("title", $this->title);
+      $this->smarty->assign("isLogged", isset($_SESSION['usuario']));
+      $this->smarty->assign("hasPermission", $_SESSION['permiso']);
+      $this->smarty->assign("user", $_SESSION['usuario']);
+      $this->smarty->assign("msj", $msj);
+      $this->smarty->assign("bike_id", $id);
+      $this->smarty->display("templates/editBikeImage.tpl");
+    }
 
     function insertBike($categories, $msj = "") {
       $this->title = "Agregar bicicleta";

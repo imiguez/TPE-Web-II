@@ -1,5 +1,5 @@
 {literal}
-<div v-if="comments.length > 0" id="comments-box" style="width: 80rem; color: white; background-color: #242527cc; margin: 0 auto 70px auto; padding: 20px 40px">
+<div v-if="comments.length > 0" id="comments-box" style="width: 60rem; color: white; background-color: #242527cc; margin: 0 auto; padding: 20px 40px">
     <div v-for="comment in comments" style="padding: 15px;">
         <div v-for="n in 5" style="display: inline-block;">
             <i  v-if="n <= comment.puntuacion" class="fa fa-star star checked"></i>
@@ -12,9 +12,12 @@
             {/literal}
             <div style="display: flex; width: 100%;">
             {if $hasPermission}
-                <p style="width: 97%; height: 60px;" v-if="comment.descripcion.length < 137" >{{ comment.descripcion }}</p>
+                <p style="width: 97%; height: 60px;" v-if="comment.descripcion.length < 80" >{{ comment.descripcion }}</p>
                 <p style="width: 97%; height: 60px; overflow: scroll;" v-else>{{ comment.descripcion }}</p>
                 <h5 style="width: 3%; cursor: pointer; display: flex; flex-direction: row-reverse;"><i class="delete-comment fa fa-trash" :id="comment.id_comentario"></i></h5>
+            {elseif $isLogged}
+                <p style="width: 97%; height: 60px;" v-if="comment.descripcion.length < 80" >{{ comment.descripcion }}</p>
+                <p style="width: 97%; height: 60px; overflow: scroll;" v-else>{{ comment.descripcion }}</p>
             {else}
                 <p style="width: auto;">{{ comment.descripcion }}</p>
             {/if}

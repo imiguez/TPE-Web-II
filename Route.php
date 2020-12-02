@@ -45,10 +45,13 @@
     // EDIT
     $r->addRoute("editBike/:ID", "POST", "ControllerBikes", "editBike");
     $r->addRoute("editCategory/:ID", "POST", "ControllerCategories", "editCategory");
+    $r->addRoute("showEditBikeImage/:ID", "GET", "ControllerBikes", "showEditBikeImage");
+    $r->addRoute("editBikeImage/:ID", "POST", "ControllerBikes", "editBikeImage");
 
     // DELETE
     $r->addRoute("deleteBike/:ID", "GET", "ControllerBikes", "deleteBike");
     $r->addRoute("deleteCategory/:ID", "GET", "ControllerCategories", "deleteCategory");
+    $r->addRoute("deleteBikeImage/:ID", "GET", "ControllerBikes", "deleteBikeImage");
 
 
     //                      GESTION DE USUARIOS

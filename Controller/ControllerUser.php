@@ -110,6 +110,9 @@ require_once './View/ViewBikes.php';
             $this->sessionHelper->checkUserPermission();
             $id = $params[':ID'];
             $this->model->deleteUser($id);
+            if ($id == $_SESSION['id_usuario']) {
+                $_SESSION = [];
+            }
             header("Location: ".BASE_URL."showUserList");
         }
 

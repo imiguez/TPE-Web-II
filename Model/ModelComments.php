@@ -5,7 +5,7 @@ class ModelComments{
     private $db;
 
     function __construct() {
-        $this->db = new PDO('mysql:host=localhost;'.'dbname=bicicleteria;charset=utf8', 'root', '');
+            $this->db = new PDO('mysql:host=us-cdbr-east-04.cleardb.com;'.'dbname=heroku_6eed6b941a6ba00;charset=utf8', 'b44bbe1fe42c96', '7f4137d0');
     }
 
     function getComments($bike) {

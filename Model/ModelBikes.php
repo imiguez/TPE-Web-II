@@ -1,11 +1,15 @@
 <?php 
 
-    class ModelBikes{
+require_once './Model/Model.php';
 
-        private $db;
+    class ModelBikes extends Model {
 
-        function __construct() {
-            $this->db = new PDO('mysql:host=us-cdbr-east-04.cleardb.com;'.'dbname=heroku_6eed6b941a6ba00;charset=utf8', 'b44bbe1fe42c96', '7f4137d0');
+        protected $db;
+
+        public function __construct() {
+            parent::__construct();
+            // $this->db = new PDO('mysql:host=mysqldb;'.'dbname=bicicleteria;charset=utf8', 'root', 'imiguez');
+            // $this->db = new PDO('mysql:host=us-cdbr-east-04.cleardb.com;'.'dbname=heroku_6eed6b941a6ba00;charset=utf8', 'b44bbe1fe42c96', '7f4137d0');
         }
 
 

@@ -1,0 +1,37 @@
+version: "3.9"
+services:
+  mysqldb:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=imiguez
+  
+  webApp:
+    image: tpe-web-2
+    ports:
+      - "80:80"
+    volumes:
+      - . :/var/www/html/
+    depends_on:
+      - mysqldb
+    
+  myadmin:
+    image: "phpmyadmin/phpmyadmin"
+    environment:
+      PMA_HOST: mysqldb
+      PMA_USER: root
+      PMA_PASSWORD: imiguez
+    ports:
+      - 8081:80
+    depends_on:
+      - mysqldb
+  
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8083:8080
+    depends_on:
+      - mysqldb

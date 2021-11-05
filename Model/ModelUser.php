@@ -1,15 +1,17 @@
 <?php
 
+require_once './Model/Model.php';
 
-    class ModelUser{
+    class ModelUser extends Model {
 
-        private $db;
+        protected $db;
         private $title;
 
 
         function __construct() {
-            $this->db = new PDO('mysql:host=us-cdbr-east-04.cleardb.com;'.'dbname=heroku_6eed6b941a6ba00;charset=utf8', 'b44bbe1fe42c96', '7f4137d0');
-
+            parent::__construct();
+            // $this->db = new PDO('mysql:host=;'.'dbname=heroku_6eed6b941a6ba00;charset=utf8', 'b44bbe1fe42c96', '7f4137d0');
+            // $this->db = new PDO('mysql:host=mysqldb;'.'dbname=bicicleteria;charset=utf8', 'root', 'imiguez');
         }
 
         function getUser($user) {
